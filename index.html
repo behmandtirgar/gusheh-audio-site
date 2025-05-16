@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>پخش گوشه‌های آوازی</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      direction: rtl;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    iframe {
+      width: 100%;
+      height: 60px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>پخش نمونه‌های صوتی گوشه‌های آوازی</h1>
+  <input type="text" id="search" placeholder="نام گوشه را وارد کنید (مثلاً بیات ترک)">
+  <div class="result" id="output"></div>
+
+  <script>
+    const data = {
+      "بیات ترک": {
+        description: "نمونه‌ای از گوشه بیات ترک از دستگاه شور.",
+        url: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/moosighi-irani/sxlqe866fhxb&color=%23ff5500&inverse=false&auto_play=false&show_user=false&show_teaser=false&visual=false"
+      }
+    };
+
+    document.getElementById("search").addEventListener("input", function () {
+      const query = this.value.trim();
+      const output = document.getElementById("output");
+      if (data[query]) {
+        output.innerHTML = `
+          <strong>${query}</strong>
+          <p>${data[query].description}</p>
+          <iframe src="${data[query].url}" allow="autoplay"></iframe>
+        `;
+      } else {
+        output.innerHTML = "<p>گوشه‌ای با این نام پیدا نشد.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
